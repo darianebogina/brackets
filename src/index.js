@@ -2,13 +2,18 @@ module.exports = function check(str, bracketsConfig) {
     if (!(str.length % 2 == 0)) {
         return false;
     }
-    str_brackets = bracketsConfig.flat().join('');
-
-    for (let i = 0; i <= str.length; i++) {
-        str = str.replaceAll(str_brackets, '');
-        console.log(str);
+    let str_brackets = [];
+    let str_length = str.length;
+    for (let i = 0; i < bracketsConfig.length; i++) {
+        str_brackets.push(bracketsConfig[i].join(''));
     }
-    
+
+    for (let i = 0; i <= str_length; i++) {
+        for (let j = 0; j < str_brackets.length; j++) {
+            str = str.replaceAll(str_brackets[j], '');
+        }
+    }
+
     if (str.length == 0) {
         return true;
     }
